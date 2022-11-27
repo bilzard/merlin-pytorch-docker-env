@@ -1,0 +1,49 @@
+version: "3.9"
+name: merlin-pytorch
+services:
+  jupyter:
+    build:
+      context: /home/bilzard/work/merlin-pytorch
+      dockerfile: Dockerfile
+    cap_add:
+    - SYS_NICE
+    command:
+    - jupyter
+    - lab
+    - --ip=0.0.0.0
+    - --allow-root
+    - --no-browser
+    - --collaborative
+    - --config=/merlin/jupyter_lab_config.py
+    ipc: host
+    networks:
+      default: null
+    ports:
+    - mode: ingress
+      target: 8888
+      published: "8888"
+      protocol: tcp
+    - mode: ingress
+      target: 8797
+      published: "8797"
+      protocol: tcp
+    - mode: ingress
+      target: 8796
+      published: "8796"
+      protocol: tcp
+    runtime: nvidia
+    volumes:
+    - type: bind
+      source: /home/bilzard/work/merlin-pytorch/working
+      target: /merlin/working
+      bind:
+        create_host_path: true
+    - type: bind
+      source: /home/bilzard/work/merlin-pytorch/input
+      target: /merlin/input
+      bind:
+        create_host_path: true
+    working_dir: /merlin/working
+networks:
+  default:
+    name: merlin-pytorch_default
