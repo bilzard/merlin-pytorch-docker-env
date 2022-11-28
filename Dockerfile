@@ -10,7 +10,9 @@ RUN pip install -U pip && pip install \
     nb-black \
     jupyterlab_materialdarker \
     IProgress \
-    ipywidgets
+    ipywidgets \
+    jupyterlab-nvdashboard \
+    bokeh==2.4.1
 
 RUN pip freeze >| /merlin/requirements.lock
 
