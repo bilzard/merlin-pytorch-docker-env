@@ -8,7 +8,7 @@ RUN curl -fsSL https://deb.nodesource.com/setup_19.x | bash - \
   && apt-get install -y nodejs
 
 COPY ./artifact/requirements.txt /merlin/.
-RUN pip install -U pip && pip install -r requirements.txt
+RUN pip install -U pip && pip install -r /merlin/requirements.txt
 RUN pip freeze >| /merlin/requirements.lock
 
 RUN jupyter labextension install jupyterlab-plotly
