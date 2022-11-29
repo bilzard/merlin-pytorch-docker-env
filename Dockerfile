@@ -7,20 +7,8 @@ COPY ./artifact/jupyter_lab_config.py /merlin/.
 RUN curl -fsSL https://deb.nodesource.com/setup_19.x | bash - \
   && apt-get install -y nodejs
 
-RUN pip install -U pip && pip install \
-    fastprogress \
-    japanize-matplotlib \
-    nb-black \
-    jupyterlab_materialdarker \
-    IProgress \
-    ipywidgets \
-    jupyterlab-nvdashboard \
-    bokeh==2.4.1 \
-    jupyterlab>=3 \
-    ipywidgets>=7.6 \
-    jupyter-dash
-
-
+COPY ./artifact/requirements.txt /merlin/.
+RUN pip install -U pip && pip install -r requirements.txt
 RUN pip freeze >| /merlin/requirements.lock
 
 RUN jupyter labextension install jupyterlab-plotly
