@@ -9,3 +9,4 @@ jupyterlab>=3
 ipywidgets>=7.6
 jupyter-dash
 seaborn
+requests>=2.28.1
