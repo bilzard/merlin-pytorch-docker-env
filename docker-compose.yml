@@ -3,7 +3,7 @@ name: merlin-pytorch
 services:
   jupyter:
     build:
-      context: /home/bilzard/work/merlin-pytorch
+      context: .
       dockerfile: Dockerfile
     cap_add:
     - SYS_NICE
@@ -34,12 +34,12 @@ services:
     runtime: nvidia
     volumes:
     - type: bind
-      source: /home/bilzard/work/merlin-pytorch/working
+      source: ./working
       target: /merlin/working
       bind:
         create_host_path: true
     - type: bind
-      source: /home/bilzard/work/merlin-pytorch/input
+      source: ./input
       target: /merlin/input
       bind:
         create_host_path: true
