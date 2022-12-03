@@ -43,6 +43,7 @@ services:
       target: /merlin/input
       bind:
         create_host_path: true
+    shm_size: "64gb"
     working_dir: /merlin/working
 networks:
   default:
