@@ -4,8 +4,9 @@ WORKDIR /merlin/working
 RUN mkdir -p /merlin/input
 COPY ./artifact/jupyter_lab_config.py /merlin/.
 
+RUN apt update && apt upgrade -y
 RUN curl -fsSL https://deb.nodesource.com/setup_19.x | bash - \
-  && apt-get install -y nodejs
+  && apt install -y nodejs
 
 COPY ./artifact/requirements.txt /merlin/.
 RUN pip install -U pip && pip install -r /merlin/requirements.txt
