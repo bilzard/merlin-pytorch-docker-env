@@ -7,14 +7,7 @@ services:
       dockerfile: Dockerfile
     cap_add:
     - SYS_NICE
-    command:
-    - jupyter
-    - lab
-    - --ip=0.0.0.0
-    - --allow-root
-    - --no-browser
-    - --collaborative
-    - --config=/merlin/jupyter_lab_config.py
+    command: bash -c 'ln -sfn / .lsp_symlink && jupyter lab --ip=0.0.0.0 --allow-root --no-browser --collaborative --ContentsManager.allow_hidden=True --config=/merlin/jupyter_lab_config.py'
     ipc: host
     networks:
       default: null
