@@ -1,0 +1,13 @@
+{
+	"name": "Merlin-pytorch Jupyter",
+	"dockerComposeFile": [
+		"../docker-compose.yml",
+		"docker-compose.yml"
+	],
+	"service": "jupyter",
+	"workspaceFolder": "/merlin/working",
+  "extensions": [
+    "ms-python.python",
+    "ms-python.vscode-pylance"
+  ]
+}
