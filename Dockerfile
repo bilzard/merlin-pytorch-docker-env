@@ -20,3 +20,4 @@ COPY ./artifact/overrides.json /usr/local/share/jupyter/lab/settings/.
 RUN mkdir -p /root/.ipython/profile_default
 COPY ./artifact/ipython_config.py /root/.ipython/profile_default/.
 
+COPY ./artifact/gitignore_global /root/.gitignore_global
