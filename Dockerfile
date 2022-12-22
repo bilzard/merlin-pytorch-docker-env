@@ -8,10 +8,24 @@ RUN apt update && apt upgrade -y
 RUN curl -fsSL https://deb.nodesource.com/setup_19.x | bash - \
   && apt install -y nodejs
 
+# fish
+RUN apt-add-repository ppa:fish-shell/release-3 && \
+    apt update && \
+    apt install -y fish && \
+    chsh -s /usr/bin/fish
+
+# fisher
+SHELL ["/usr/bin/fish", "-c"]
+RUN curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher && \
+    apt install -y fonts-powerline && \
+    fisher install oh-my-fish/theme-bobthefish && \
+    fisher install jethrokuan/z
+SHELL ["/usr/bin/bash", "-c"]
+
+# install requirements
 COPY ./artifact/requirements.txt /merlin/.
 RUN pip install -U pip && pip install -r /merlin/requirements.txt
 RUN pip freeze >| /merlin/requirements.lock
-
 RUN jupyter labextension install jupyterlab-plotly
 
 RUN mkdir -p /usr/local/share/jupyter/lab/settings
