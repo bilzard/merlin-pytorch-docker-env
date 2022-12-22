@@ -22,6 +22,11 @@ RUN curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fishe
     fisher install jethrokuan/z
 SHELL ["/usr/bin/bash", "-c"]
 
+# install diff-so-fancy
+RUN curl -qL https://www.npmjs.com/install.sh | sh && npm install -g diff-so-fancy
+RUN echo -e "export LANG=C\nexport LC_ALL=C" >> ~/.bashrc
+RUN echo -e "set -x LANG C\nset -x LC_ALL C" >> ~/.config/fish/config.fish
+
 # install requirements
 COPY ./artifact/requirements.txt /merlin/.
 RUN pip install -U pip && pip install -r /merlin/requirements.txt
